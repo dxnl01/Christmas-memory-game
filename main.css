@@ -1,0 +1,932 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-image: url(./img/estrellas.png);
+  background-color: #e9c97c;
+}
+
+header {
+  max-height: 100px;
+  min-width: 100%;
+  height: 100px;
+  background-color: aliceblue;
+  z-index: -3;
+}
+
+.headerContainer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.headerContainerLogo {
+  height: 100%;
+  background-color: #fff;
+  width: 40%;
+}
+
+.headerContainerLogo img {
+  max-height: 100%;
+  height: 100%;
+}
+
+.headerContainerContent {
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: start;
+  padding: 10px;
+  text-align: justify;
+}
+
+.headerContainerContent h1 {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: rgb(102, 198, 166);
+}
+
+.headerContainerContent p {
+  font-size: 0.9rem;
+  font-weight: 300;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 70px;
+  min-width: 100%;
+  z-index: 0;
+  max-height: 100px;
+}
+
+.footerContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  background-color: aliceblue;
+}
+
+.footerContainerContent {
+  max-height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  padding: 10px;
+}
+
+.footerContainerContent img {
+  height: 30px;
+  margin: 0 10px;
+}
+
+.footerContainerSocialLogos {
+  max-height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 10px;
+}
+
+.footerContainerSocialLogos img {
+  height: 100%;
+  margin: 0 3px;
+  padding: 0;
+}
+
+.footerContainerSocialLogos a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: #000;
+}
+
+.footerContainerSocialLogos a.contactanos-button {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: #fff;
+  background-color: #5fa3a5;
+  padding: 7px 10px;
+  border-radius: 8px;
+}
+
+main {
+  max-width: min-content;
+  display: grid;
+  pointer-events: none;
+  padding: 0;
+  margin: 100px 0;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-gap: 10px;
+  z-index: -3;
+}
+
+.backgroundOpacity {
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.backgroundOpacity-1,
+.backgroundOpacity-2,
+.backgroundOpacity-3,
+.backgroundOpacity-4,
+.backgroundOpacity-5,
+.backgroundOpacity-6,
+.backgroundOpacity-7,
+.backgroundOpacity-8 {
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -5;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.flipCard {
+  position: relative;
+  color: white;
+  width: 150px;
+  height: 150px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: transparent;
+  animation: cardAnimation 0.3s ease-in-out forwards;
+  animation-delay: var(--delay);
+  opacity: 0;
+}
+
+/* When page start fade in the cards */
+@keyframes cardAnimation {
+  0% {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.flipCardinner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flipCardback,
+.flipCardfront {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.flipCardback img,
+.flipCardfront img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-height: 100%;
+  height: auto;
+  pointer-events: none;
+}
+
+.flipCardback {
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+  overflow: hidden;
+}
+
+.flipCardfront {
+  /* invert the y like if it was a mirror */
+  transform: rotateY(0deg);
+}
+
+.flipCardback img {
+  width: 95%;
+}
+
+.pleaseTurnCard {
+  margin: 0;
+  position: fixed;
+  display: none;
+  transform: scale(0.5);
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.alert {
+  position: relative;
+  top: 10;
+  left: 0;
+  width: auto;
+  height: auto;
+  padding: 10px;
+  margin: 10px;
+  line-height: 1.8;
+  border-radius: 5px;
+  font-family: sans-serif;
+  font-weight: 400;
+}
+
+.alertText {
+  display: table;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 16px;
+}
+
+.error {
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  height: 50%;
+  background-color: #e7ce77;
+  border-radius: 10px;
+  border: 10px solid #ffc95d;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.modalIntro {
+  width: 300px;
+  position: fixed;
+  top: 38%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Inter", sans-serif;
+  color: #ffffff;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  border-radius: 20px;
+  opacity: 1;
+}
+
+.labelDice {
+  padding: 14px 16px;
+  background: #ff9900;
+  box-shadow: 0px 6px 0px #a86500;
+  animation: changeOrder 6s infinite linear;
+  user-select: none;
+  position: fixed;
+  top: 63%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150px;
+  height: 15px;
+  font-size: 16px;
+}
+
+/* Animation for changing order */
+
+@keyframes changeOrder {
+  from {
+    z-index: 6;
+  }
+  to {
+    z-index: 1;
+  }
+}
+
+.mainModal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  align-items: center;
+  justify-content: center;
+  width: 65%;
+  height: fit-content;
+  background-color: #e7ce77;
+  border-radius: 10px;
+  border: 10px solid #ffc95d;
+  z-index: 20;
+}
+
+.coupleFindedModal {
+  display: flex;
+  opacity: 0;
+  z-index: -1;
+}
+
+.coupleFindedModal .continuarButton {
+  padding: 14px 16px;
+  background: #ff9900;
+  box-shadow: 0px 6px 0px #a86500;
+  animation: changeOrder 6s infinite linear;
+  user-select: none;
+  width: fit-content;
+  height: 10px;
+  font-size: 12px;
+  padding: 10px 3px;
+}
+
+.youWonCard {
+  flex-direction: column;
+  display: none;
+  overflow: auto;
+}
+
+.youWonCard .top-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-height: 250px;
+  height: 250px;
+}
+
+.youWonCard .leftContainer,
+.coupleFindedModal .leftContainer {
+  width: 60%;
+  height: 100%;
+}
+
+.youWonCard .top-container .leftContainer img,
+.coupleFindedModal .leftContainer img:nth-of-type(1) {
+  width: 100%;
+  pointer-events: none;
+}
+
+.coupleFindedModal .leftContainer img:not(:nth-of-type(1)) {
+  position: absolute;
+  pointer-events: none;
+}
+
+.coupleFindedModal .leftContainer img.maria {
+  width: 15%;
+  bottom: 5%;
+  left: 1%;
+}
+
+.coupleFindedModal .leftContainer img.jose {
+  width: 10%;
+  bottom: 15%;
+  left: 3%;
+}
+
+.coupleFindedModal .leftContainer img.jesus {
+  width: 15%;
+  bottom: 3%;
+  left: 15%;
+}
+
+.coupleFindedModal .leftContainer img.melchor {
+  width: 18%;
+  bottom: 8%;
+  left: 28%;
+}
+
+.coupleFindedModal .leftContainer img.gaspar {
+  width: 12%;
+  bottom: 16%;
+  left: 24%;
+}
+
+.coupleFindedModal .leftContainer img.baltazar {
+  width: 12%;
+  bottom: 20%;
+  left: 14%;
+}
+
+.coupleFindedModal .leftContainer img.pastor {
+  width: 11%;
+  bottom: 14%;
+  left: 41.5%;
+}
+
+.coupleFindedModal .leftContainer img.mulaBuey {
+  width: 12.5%;
+  bottom: 0%;
+  left: 47.5%;
+}
+
+.youWonCard .rightContainer,
+.coupleFindedModal .rightContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 40%;
+  background-image: url(./img/estrellas.png);
+  background-color: #e9c97c;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  z-index: 30;
+}
+
+.youWonCard .rightContainer img {
+  width: 130px;
+}
+
+.rightContainer p{
+  text-align: justify!important;
+  
+
+}
+
+@media screen and (min-width: 420px) {
+  .rightContainer p {
+    font-size: calc(16px + (24 - 16) * ((100vw - 420px) / (1200 - 420)));
+  }
+}
+
+
+.youWonCard .rightContainer h2,
+.coupleFindedModal .rightContainer h2 {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #d7162f;
+  margin: 0 50px;
+}
+
+
+
+.youWonCard .rightContainer p,
+.coupleFindedModal .rightContainer p {
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: #000;
+  padding: 0;
+  text-align: center;
+  margin: 10px 20px;
+}
+
+.youWonCard .bottomContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  color: #fff;
+  background-color: #075048;
+  padding: 10px 0;
+  
+  
+}
+
+.youWonCard .bottomContainer p {
+  font-size: 1.2rem;
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  margin: 0 7px;
+}
+
+.youWonCard .bottomContainer a img {
+  width: 35px;
+  height: 35px;
+}
+
+.youWonCardbutton {
+  background: #d7162f;
+  color: #fff;
+  box-shadow: 0px 6px 0px #880e1e;
+  width: 120px;
+  height: 10px;
+  font-size: 12px;
+  padding: 10px 3px;
+}
+
+.youWonCard a,
+.coupleFindedModal a {
+  text-decoration: none;
+}
+
+/* responsive */
+
+/* screens larger than 1440 auto bigg cards and footer and header */
+
+@media screen and (max-width: 1440px) {
+  main {
+    grid-gap: 5px;
+  }
+  .flipCard {
+    width: 130px;
+    height: 130px;
+  }
+  .youWonCard h2{
+    font-size: 1.5rem;
+  }
+
+  .headerContainer .headerContainerLogo {
+    height: 100%;
+  }
+
+  .headerContainerContent h1 {
+    font-size: 1.5rem;
+  }
+
+  .headerContainerContent p {
+    font-size: 0.9rem;
+  }
+
+  .footerContainerContent img {
+    height: 30px;
+  }
+
+  .footerContainerSocialLogos img {
+    height: 100%;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  main {
+    grid-gap: 5px;
+    margin: 50px 0 100px 0;
+  }
+  .flipCard {
+    width: 100px;
+    height: 100px;
+  }
+  .youWonCard h2 {
+    font-size: 1.0rem;
+  }
+
+  header {
+    height: 80px;
+  }
+
+  .headerContainer .headerContainerLogo {
+    width: 500px;
+  }
+  .headerContainer .headerContainerLogo img {
+    width: 100%;
+  }
+
+  .headerContainerContent h1 {
+    font-size: 1.4rem;
+  }
+
+  .headerContainerContent p {
+    font-size: 0.7rem;
+  }
+
+  .footerContainerContent img {
+    height: 30px;
+  }
+
+  .footerContainerSocialLogos img {
+    height: 100%;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  
+  .youWonCard h2{
+    font-size: 1rem!important;
+  };
+
+  .headerContainerContent p {
+    font-size: 0.7rem!important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .flipCard {
+    width: 100px;
+    height: 100px;
+  }
+  .youWonCard {
+    width: 90%;
+    height: 70%;
+  }
+
+  header {
+    max-width: 100vw;
+    height: 60px;
+  }
+
+
+
+  .headerContainerContent h1 {
+    font-size: 1rem;
+  }
+
+  .headerContainerContent p {
+    font-size: 0.5rem;
+  }
+
+  .youWonCard h2{
+    font-size: 1rem!important;
+  };
+
+  .headerContainerContent p {
+    font-size: 0.6rem!important;
+  }
+
+  .footerContainerContent img {
+    height: 20px;
+  }
+
+  footer p {
+    font-size: 0.5rem;
+  }
+
+  .mainModal {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  main {
+    grid-gap: 5px;
+  }
+  .flipCard {
+    width: 80px;
+    height: 80px;
+  }
+ 
+  .headerContainer {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .headerContainer .headerContainerLogo {
+    width: 20%;
+  }
+
+  .headerContainerContent {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .headerContainerContent h1 {
+    font-size: 0.8rem;
+  }
+
+  .headerContainerContent p {
+    font-size: 0.4rem;
+  }
+
+  footer {
+    height: 50px;
+    max-width: 100vw;
+    z-index: 999;
+  }
+
+  .footerContainerSocialLogos a{
+    height: 20px;
+  }
+
+  a.contactanos-button {
+    padding: 0;
+    width: fit-content;
+    height: 8px;
+  }
+
+  .contactanos-button p {
+    font-size: 0.5rem;
+  }
+
+  .footerContainerContent img {
+    height: 20px;
+  }
+
+  .footerContainerContent {
+      flex-direction: column;
+      justify-content: center;
+      align-items: start;
+  }
+  .mainModal {
+    width: 100%;
+  }
+
+  .coupleFindedModal .rightContainer h2 {
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  .coupleFindedModal .rightContainer p {
+    font-size: 0.5rem;
+  }
+
+  .coupleFindedModal .button {
+    font-size: 0.5rem;
+    padding: 5px 10px;
+  }
+
+}
+
+@media screen and (max-width: 320px) {
+  main {
+    grid-gap: 5px;
+  }
+  .flipCard {
+    width: 52px;
+    height: 52px;
+  }
+  .youWonCard {
+    width: 90%;
+    height: 50%;
+  }
+
+  .headerContainer {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .headerContainer .headerContainerLogo {
+    width: 20%;
+  }
+
+  .headerContainerContent {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .rightContainer h2 {
+    font-size: 0.6rem!important;
+  }
+
+  .rightContainer p {
+    font-size: 0.4rem!important;
+  }
+
+
+  .headerContainerContent h1 {
+    font-size: 0.8rem;
+  }
+
+  .headerContainerContent p {
+    font-size: 0.4rem;
+  }
+
+  footer {
+    height: 50px;
+    max-width: 100vw;
+  }
+
+  .footerContainerSocialLogos a{
+    height: 18px;
+  }
+
+  a.contactanos-button {
+    padding: 0;
+    width: fit-content;
+    height: 8px;
+  }
+
+  .contactanos-button p {
+    font-size: 0.4rem;
+  }
+
+  .footerContainerContent img {
+    height: 18px;
+  }
+
+  .footerContainerContent {
+      flex-direction: column;
+      justify-content: center;
+      align-items: start;
+  }
+}
+
+@media screen and (max-width: 280px) {
+  main {
+    grid-gap: 5px;
+  }
+  .flipCard {
+    width: 50px;
+    height: 50px;
+  }
+  .mainModal .youWonCard {
+    width: 90%;
+    height: 70%;
+  }
+
+  
+  .headerContainer {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .headerContainer .headerContainerLogo {
+    width: 20%;
+  }
+
+  .headerContainerContent {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .rightContainer h2 {
+    font-size: 0.6rem!important;
+  }
+
+  .rightContainer p {
+    font-size: 0.35rem!important;
+  }
+ 
+  .headerContainerContent h1 {
+    font-size: 0.8rem;
+  }
+
+  .headerContainerContent p {
+    font-size: 0.4rem;
+  }
+
+  footer {
+    height: 50px;
+    max-width: 100vw;
+    z-index: 999!important; 
+  }
+
+  .footerContainerSocialLogos a{
+    height: 16px;
+  }
+
+  a.contactanos-button {
+    padding: 0;
+    width: fit-content;
+    height: 6px;
+  }
+
+  .contactanos-button p {
+    font-size: 0.3rem;
+  }
+
+  .footerContainerContent img {
+    height: 16px;
+  }
+
+  .footerContainerContent {
+      flex-direction: column;
+      justify-content: center;
+      align-items: start;
+  }
+
+  .pleaseTurnCard .error p{
+    font-size: 0.8rem;
+  }
+}
+
